@@ -44,5 +44,5 @@ scratch/
 */in/*
 */out/*
 */tmp/*
-!1_fetch/in/.placeholder
+!1_fetch/in/coop/.placeholder
 !2_process/out/.placeholder
