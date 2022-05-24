@@ -44,5 +44,5 @@ scratch/
 */in/*
 */out/*
 */tmp/*
-!1_fetch/out/.empty
-!2_process/out/.empty
+!1_fetch/in/.placeholder
+!2_process/out/.placeholder
