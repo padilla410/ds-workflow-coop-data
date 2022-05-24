@@ -15,7 +15,7 @@ p2_targets_list <- list(
 
   # build parsing table
   tar_target(
-    input_parser_xwalk,
+    coop_parser_xwalk,
     tibble(source = coop_files,
            func = coop_parsers)
   ),
@@ -41,8 +41,8 @@ p2_targets_list <- list(
 
   tar_target(
     parse_coop_dynamically,
-    rlang::exec(input_parser_xwalk$func, input_parser_xwalk$source),
-    pattern = map(input_parser_xwalk),
+    rlang::exec(coop_parser_xwalk$func, coop_parser_xwalk$source),
+    pattern = map(coop_parser_xwalk),
     format = 'file'
   )#,
 )
