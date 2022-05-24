@@ -37,3 +37,12 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+
+# ds-workflow-coop-data files to ignore
+_targets/
+scratch/
+*/in/*
+*/out/*
+*/tmp/*
+!1_fetch/out/.empty
+!2_process/out/.empty

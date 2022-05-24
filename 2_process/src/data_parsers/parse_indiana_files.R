@@ -1,4 +1,6 @@
-parse_Indiana_Glacial_Lakes_WQ_IN_DNR <- function(infile) {
+#' @param infile full path for file to parse
+#' @param outpath subfolder to store final RDS output. Do not include final `/`
+parse_Indiana_Glacial_Lakes_WQ_IN_DNR <- function(infile, outpath = '2_process/tmp') {
 
   raw <- readxl::read_excel(infile)
 
@@ -13,11 +15,22 @@ parse_Indiana_Glacial_Lakes_WQ_IN_DNR <- function(infile) {
            depth = convert_ft_to_m(as.numeric(depth))) %>%
     dplyr::select(DateTime, depth, temp, IN_DNR_ID)
 	
-  return(clean)
+  # extract file name from `infile`
+  file_name <- infile %>% 
+    gsub('(\\..*)', '', .) %>% # remove file extension
+    gsub('(^1_.*)(/)', '', .) # remove `in` file path
+  
+  # create outfile name
+  out_nm <- paste0(outpath, '/', file_name, '.rds')
+  
+  saveRDS(object = clean, file = out_nm)
+  return(out_nm)
 
 }
 
-parse_Indiana_CLP_lakedata_1994_2013 <- function(infile) {
+#' @param infile full path for file to parse
+#' @param outpath subfolder to store final RDS output. Do not include final `/`
+parse_Indiana_CLP_lakedata_1994_2013 <- function(infile, outpath = '2_process/tmp') {
 
   raw <- readxl::read_excel(infile)
 
@@ -31,11 +44,21 @@ parse_Indiana_CLP_lakedata_1994_2013 <- function(infile) {
     filter(!is.na(temp)) %>%
     dplyr::select(DateTime, depth, temp, IN_CLP_ID)
 
-  return(clean)
-
+  # extract file name from `infile`
+  file_name <- infile %>% 
+    gsub('(\\..*)', '', .) %>% # remove file extension
+    gsub('(^1_.*)(/)', '', .) # remove `in` file path
+  
+  # create outfile name
+  out_nm <- paste0(outpath, '/', file_name, '.rds')
+  
+  saveRDS(object = clean, file = out_nm)
+  return(out_nm)
 }
 
-parse_Indiana_GlacialLakes_TempDOprofiles_5.6.13 <- function(infile) {
+#' @param infile full path for file to parse
+#' @param outpath subfolder to store final RDS output. Do not include final `/`
+parse_Indiana_GlacialLakes_TempDOprofiles_5.6.13 <- function(infile, outpath = '2_process/tmp') {
 
   raw <- readxl::read_excel(infile)
 
@@ -48,6 +71,15 @@ parse_Indiana_GlacialLakes_TempDOprofiles_5.6.13 <- function(infile) {
     filter(!depth < 0)
     dplyr::select(DateTime, depth, temp, id)
 
-  return(clean)
+    # extract file name from `infile`
+    file_name <- infile %>% 
+      gsub('(\\..*)', '', .) %>% # remove file extension
+      gsub('(^1_.*)(/)', '', .) # remove `in` file path
+    
+    # create outfile name
+    out_nm <- paste0(outpath, '/', file_name, '.rds')
+    
+    saveRDS(object = clean, file = out_nm)
+    return(out_nm)
 
 }
