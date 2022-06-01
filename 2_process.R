@@ -8,9 +8,11 @@ p2_targets_list <- list(
   ),
   
   tar_target(
+    # this could be included in the target above
+    # also vectorize to the extent possible
     coop_parsers,
-    build_parser_name(coop_files),
-    pattern = map(coop_files)
+    build_parser_name(coop_files), 
+    pattern = map(coop_files) # this creates a good bit of `targets` overhead
   ),
 
   # build parsing table

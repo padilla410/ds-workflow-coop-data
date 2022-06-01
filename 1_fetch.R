@@ -10,6 +10,7 @@ p1_targets_list <- list(
   
   tar_target(
     # list files in the repo, dribble contains hashes
+    # `tarchetypes:;tar_cue_age` may be helpful to prevent this from always running
     coop_file_list,
     drive_ls('ds-workflow-coop-data/1_fetch/data_cooperator/in')
   ),
